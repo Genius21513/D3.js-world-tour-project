@@ -1,0 +1,25 @@
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.content .left {
+    width: 70%;
+    position: relative;
+}
+
+.content .right {
+    width: 30%;
+    position: relative;
+}
+
+#m_title h1 {
+    text-align: center;
+}
+
+.right #m_globe {
+    position: relative;
+    width: 100%;
+}

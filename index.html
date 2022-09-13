@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>World Tour</title>
+<link rel="stylesheet" type="text/css" href="./inspector.css">
+<link rel="stylesheet" type="text/css" href="./style.css">
+
+<body>
+    <section class="content">
+        <div class="left">
+            <div id="m_title"></div>
+            <div id="m_country"></div>
+            <div id="m_globe"></div>
+        </div>
+        <div class="right">
+            <h2>This is content.</h2>
+        </div>
+        
+    </section>
+    <script type="module">
+
+        import define from "./index.js";
+        import { Runtime, Library, Inspector } from "./runtime.js";
+
+        const globe_rect = document.getElementById('m_globe').getBoundingClientRect();
+        const runtime = new Runtime(Object.assign(new Library, {
+            width: globe_rect.width,
+        }));
+        
+        const cellNames = ["m_title", "m_country", "m_globe"]; 
+        const main = runtime.module(define, name => {            
+            if (cellNames.includes(name)) {
+                return new Inspector(document.getElementById(name))
+            }
+        });
+
+        main.redefine("height", 400)
+
+        // const main = runtime.module(define, (name) => {            
+        //     return new Inspector(document.body.appendChild(document.createElement('p')))
+        // });
+
+        // const main = runtime.module(define, Inspector.into(document.body));
+
+    </script>
+</body>
+</html>
