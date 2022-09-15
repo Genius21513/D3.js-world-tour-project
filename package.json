@@ -7,8 +7,15 @@
     "name": "D3",
     "url": "https://observablehq.com/@d3"
   },
+  "scripts": {
+    "start": "npx http-server"
+  },
   "type": "module",
   "peerDependencies": {
     "@observablehq/runtime": "4"
+  },
+  "dependencies": {
+    "d3": "6.7.0",
+    "topojson-client": "3"
   }
 }

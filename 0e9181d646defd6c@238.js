@@ -7,7 +7,7 @@ function _1(md) {
 
 function _2(html, name) {  
   return (
-    html`<b style="display:block;text-align:center;line-height:33px;">${name}`
+    html`<b style="display:block;line-height:33px;">${name}`
   )
 }
 
@@ -22,13 +22,19 @@ async function* _canvas(DOM, width, height, d3, sphere, land, borders, countries
     context.beginPath(), path(country), context.fillStyle = "#f00", context.fill();
     context.beginPath(), path(borders), context.strokeStyle = "#fff", context.lineWidth = 0.5, context.stroke();
     context.beginPath(), path(sphere), context.strokeStyle = "#000", context.lineWidth = 1.5, context.stroke();
-    context.beginPath(), path(arc), context.stroke();
+    // context.beginPath(), path(arc), context.stroke();    
     return context.canvas;
   }
 
   let p1, p2 = [0, 0], r1, r2 = [0, 0, 0];
-  for (const country of countries) {
+  for (const country of countries) {    
     $0.value = country.properties.name;
+    // document.getElementById('slider').className = "hide";
+
+    // setTimeout(function() {
+    //     document.getElementById('slider').className = "";
+    // }, 1000);
+    
     yield render(country);
 
     p1 = p2, p2 = d3.geoCentroid(country);
@@ -37,16 +43,17 @@ async function* _canvas(DOM, width, height, d3, sphere, land, borders, countries
     const iv = Versor.interpolateAngles(r1, r2);
 
     await d3.transition()
-      .duration(1250)
+      .duration(1250)      
       .tween("render", () => t => {
         projection.rotate(iv(t));
         render(country, { type: "LineString", coordinates: [p1, ip(t)] });
       })
       .transition()
       .tween("render", () => t => {
-        render(country, { type: "LineString", coordinates: [ip(t), p2] });
+        render(country, { type: "LineString", coordinates: [ip(t), p2] });        
       })
       .end();
+    
   }
 }
 
@@ -155,7 +162,7 @@ function _land(topojson, world) {
 
 function _world(d3) {
   return (
-    d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+    d3.json("./countries-110m.json")
   )
 }
 
