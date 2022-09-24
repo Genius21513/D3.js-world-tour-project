@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Sankey animation — acyclic graph</title>
+<link rel="stylesheet" type="text/css" href="./inspector.css">
+<!-- 
+<script src="./src/marked.min.js" type="text/javscript"></script>
+<script src="./src/d3-shape.min.js" type="text/javscript"></script>
+<script src="./src/d3-path.min.js" type="text/javscript"></script>
+<script src="./src/d3-array.min.js" type="text/javscript"></script>
+<script src="./src/d3@5.min.js" type="text/javscript"></script> -->
+
+<body>
+    <div class="content">
+        <h2>You can show <span id="ended_nums"></span> of dots.</h2>
+        <!-- <h2 id="title">Now is ended number: <span id="ended_nums"></span></h2> -->
+        <!-- <div id="reset"></div>         -->
+        <div id="graph"></div>
+    </div>
+
+    
+<script type="module">
+
+import define from "./index.js";
+import {Runtime, Library, Inspector} from "./runtime.js";
+
+const runtime = new Runtime();
+// const main = runtime.module(define, Inspector.into(document.body));
+const main = runtime.module(define, (name) => {
+    // if (name == 'title') {
+    //     return new Inspector(document.querySelector('#title'))
+    // }
+    // if (name == 'viewof reset') {
+    //     return new Inspector(document.querySelector('#reset'))
+    // }
+    if (name == 'chart') {
+        return new Inspector(document.querySelector('#graph'))
+    }
+    return true;
+});
+</script>

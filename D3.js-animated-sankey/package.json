@@ -1,0 +1,14 @@
+{
+  "name": "@oluckyman/sankey-animation-acyclic-graph",
+  "main": "d0e1c89f33165d70@3056.js",
+  "version": "3056.0.0",
+  "homepage": "https://observablehq.com/@oluckyman/sankey-animation-acyclic-graph",
+  "author": {
+    "name": "Ilyá Belsky",
+    "url": "https://observablehq.com/@oluckyman"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

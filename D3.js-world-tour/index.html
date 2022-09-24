@@ -2,26 +2,24 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>World Tour</title>
+        <title>Globe Project</title>
         <link rel="stylesheet" type="text/css" href="./inspector.css" />
         <link rel="stylesheet" type="text/css" href="./style.css" />
     </head>
     <body>        
         <section class="content">
             <div class="left">
-                <div id="m_title"></div>            
+                <h1 class="title"><span class="green">😉Hi!</span>, You can travel World.😉</h1>
                 <div id="m_globe"></div>
             </div>
-            <div class="right">                
-                <div id="slider">            
-                    <h2>Country Name</h2>
-                    <div id="m_country"></div>
+            <div class="right">
+                <div id="slider">
+                    <h2>You're in <div id="m_country" class="green"></div></h2>
                 </div>
             </div>        
         </section>
         <script type="module">
-
-            import define from "./index.js";
+            import define from "./define.js";
             import { Runtime, Library, Inspector } from "./runtime.js";
 
             const globe_rect = document.getElementById('m_globe').getBoundingClientRect();
@@ -29,25 +27,15 @@
                 width: globe_rect.width,
             }));
             
-            const cellNames = ["m_title", "m_country", "m_globe"]; 
+            const cellNames = ["m_country", "m_globe"]; 
             const main = runtime.module(define, name => {            
                 if (cellNames.includes(name)) {
                     return new Inspector(document.getElementById(name))
                 }
+                return;
             });
 
             main.redefine("height", 400)
-        </script>
-        <script>
-            // var duration = 1250 * 2;
-            // function slideShow() {
-            //     document.getElementById('slider').className += "fadeOut";
-            //     setTimeout(function() {
-            //         document.getElementById('slider').className = "";
-            //     }, duration/2);
-            //     setTimeout(slideShow, duration/2);
-            // }
-            // slideShow();
         </script>
     </body>
 </html>

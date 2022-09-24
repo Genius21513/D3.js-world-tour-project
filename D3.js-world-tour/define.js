@@ -18,10 +18,11 @@ async function* _canvas(DOM, width, height, d3, sphere, land, borders, countries
 
   function render(country, arc) {
     context.clearRect(0, 0, width, height);
-    context.beginPath(), path(land), context.fillStyle = "#ccc", context.fill();
-    context.beginPath(), path(country), context.fillStyle = "#f00", context.fill();
-    context.beginPath(), path(borders), context.strokeStyle = "#fff", context.lineWidth = 0.5, context.stroke();
-    context.beginPath(), path(sphere), context.strokeStyle = "#000", context.lineWidth = 1.5, context.stroke();
+    context.fillStyle = "#058", context.fill();
+    context.beginPath(), path(land), context.fillStyle = "#222", context.fill();
+    context.beginPath(), path(country), context.fillStyle = "#e24", context.fill();
+    context.beginPath(), path(borders), context.strokeStyle = "#000", context.lineWidth = 0.5, context.stroke();
+    context.beginPath(), path(sphere), context.strokeStyle = "#000", context.lineWidth = 0.5, context.stroke();
     // context.beginPath(), path(arc), context.stroke();    
     return context.canvas;
   }
@@ -29,11 +30,6 @@ async function* _canvas(DOM, width, height, d3, sphere, land, borders, countries
   let p1, p2 = [0, 0], r1, r2 = [0, 0, 0];
   for (const country of countries) {    
     $0.value = country.properties.name;
-    // document.getElementById('slider').className = "hide";
-
-    // setTimeout(function() {
-    //     document.getElementById('slider').className = "";
-    // }, 1000);
     
     yield render(country);
 
@@ -43,7 +39,7 @@ async function* _canvas(DOM, width, height, d3, sphere, land, borders, countries
     const iv = Versor.interpolateAngles(r1, r2);
 
     await d3.transition()
-      .duration(1250)      
+      .duration(3500)
       .tween("render", () => t => {
         projection.rotate(iv(t));
         render(country, { type: "LineString", coordinates: [p1, ip(t)] });
